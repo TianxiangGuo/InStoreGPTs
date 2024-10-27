@@ -37,4 +37,4 @@ coverage/
 *.coverage
 *.cov
 
-data/
+data_preprocess/

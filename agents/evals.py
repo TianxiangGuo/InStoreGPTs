@@ -1,8 +1,18 @@
 from swarm import Swarm
-from agents import triage_agent, sales_agent, refunds_agent
-from evals_util import evaluate_with_llm_bool, BoolEvalResult
+# import sys
+import os
+# # Adjust this path based on the directory structure
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+from agents.agents import sales_agent, navigation_agent
+from agents.evals_util import evaluate_with_llm_bool, BoolEvalResult
 import pytest
 import json
+
 
 client = Swarm()
 
@@ -37,12 +47,12 @@ def run_and_get_tool_calls(agent, query):
 @pytest.mark.parametrize(
     "query,function_name",
     [
-        ("I want to make a refund!", "transfer_to_refunds"),
-        ("I want to talk to sales.", "transfer_to_sales"),
+        ("Transfer to the navigation agent", "transfer_to_navigation"),
+        ("I want to buy a pair of pro long distance running shoes.", "product_search"),
     ],
 )
-def test_triage_agent_calls_correct_function(query, function_name):
-    tool_calls = run_and_get_tool_calls(triage_agent, query)
+def test_sales_agent_calls_correct_function(query, function_name):
+    tool_calls = run_and_get_tool_calls(sales_agent, query)
 
     assert len(tool_calls) == 1
     assert tool_calls[0]["function"]["name"] == function_name

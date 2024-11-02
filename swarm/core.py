@@ -47,8 +47,10 @@ class Swarm:
         messages = [{"role": "system", "content": instructions}] + history
         debug_print(debug, "Getting chat completion for...:", messages)
 
-        tools = [function_to_json(f) for f in agent.functions]
+        # tools = [function_to_json(f) for f in agent.functions]
+        tools = agent.functions_description
         # hide context_variables from model
+        print(tools)
         for tool in tools:
             params = tool["function"]["parameters"]
             params["properties"].pop(__CTX_VARS_NAME__, None)
@@ -62,8 +64,7 @@ class Swarm:
             "tool_choice": agent.tool_choice,
             "stream": stream,
         }
-        # print(create_params)
-        # print("="*20)
+        
         if tools:
             create_params["parallel_tool_calls"] = agent.parallel_tool_calls
 

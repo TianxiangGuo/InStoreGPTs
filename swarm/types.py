@@ -16,6 +16,7 @@ class Agent(BaseModel):
     model: str = "gpt-4o-mini"
     instructions: Union[str, Callable[[], str]] = "You are a helpful agent."
     functions: List[AgentFunction] = []
+    functions_description: List[dict] = []
     tool_choice: str = None
     parallel_tool_calls: bool = True
 

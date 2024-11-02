@@ -38,3 +38,4 @@ coverage/
 *.cov
 
 data_preprocess/
+local_scripts/

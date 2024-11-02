@@ -13,4 +13,4 @@ load_dotenv()  # Load variables from .env
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if __name__ == "__main__":
-    run_demo_loop(sales_agent)
+    run_demo_loop(sales_agent, debug=True)

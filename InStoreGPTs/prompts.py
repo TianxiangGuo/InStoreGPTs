@@ -1,4 +1,5 @@
-# TODO: prompt sales agent to extract key words, price range from user query for the search_product function
+# TODO: add "has_discount" to the sales_system_prompt
+# TODO: write individual prompt for image search: caption the image and extract keywords for product search
 # TODO: prompt navigation agent to extract location from user query for the in_store_navigation function
 
 sales_system_prompt = """You are a friendly, informal virtual assistant for Adidas, helping customers find products using the `ProductHandler` class and its `product_search` function. Recommend only from the results of the `product_search` function, not your internal knowledge.

@@ -39,9 +39,6 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 │  │  │      words_to_be_filtered.py # Contains words to filter out
 │  │  │      __init__.py
 │
-├─local_scripts
-│      test.py              # Local script for testing
-│
 ├─swarm
 │  │  core.py               # Core functionalities of the multi-agent system
 │  │  types.py              # Data type definitions
@@ -64,24 +61,43 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 ### 1. Backend
 
 #### 1.1 Sales Agent
-- **Product Search**:
-   [x] Keyword search
-   [x] Price filtering & discount filtering
-   [ ] Embeddings search & ranking
-   [ ] Add image search: use an LLM to caption the image, extract key information, then use the existing product search logic.
+- [x] Keyword search
+- [x] Price filtering & discount filtering
+- [ ] Add image search: use an LLM to caption the image, extract key information, then use the existing product search logic.
 
 #### 1.2 Navigation Agent
-   [ ] Implement image store map + user text description for localization. Use a multi-modal LLM to guide the user.
+- [ ] Mock image store map 
+- [ ] Use a multi-modal LLM that takes user text description for localization and the Mock image store map to guide useres.
 
 #### 1.3 Transfer
-   [x] Agents handoff to each other.
+- [x] Agents handoff to each other.
 
 #### 1.4 Database
-   [x] Currently reads CSV files into a pandas DataFrame. 
-   [ ] Consider databases improvements for scalability.
+- [x] Currently reads CSV files into a pandas DataFrame. 
 
 ### 2. Frontend
-   [ ] Implement either a mobile app or web app, whichever is easier.
+- [ ] Implement either a mobile app or web app, whichever is easier.
+- [ ] UI for customers: text interaction & image input & audio interaction
+- [ ] UI for store owners: Upload products data & store map image & set agent config
+
+## Future To-Do List
+### 1. Smarter Product Search
+- [ ] Embeddings search & ranking
+- [ ] Recommendation based on history
+### 2. Enhanced Navigation
+- [ ] Creative ways for navigation
+### 3. Scalable Database
+- [ ] Consider databases improvements for scalability.
+### 4. Admin Config
+- [ ] Prompt an LLM to write style prompts based on store owner inputs. e.g. more fashion in a cloths store, more technical in a hardware store 
+### 5. Voice Interactions
+- [ ] Audio input supports (English)
+- [ ] Audio output (English)
+### 6. Model Supports
+- [ ] Not only OpenAI, but Claude, gemini, grok etc.
+- [ ] Support open-sourced models like llama, qwen...
+### 7. Multi-platform Supports
+- [ ] Adroid / IOS / Harmony ...
 
 ## Getting Started
 

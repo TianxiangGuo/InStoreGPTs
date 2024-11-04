@@ -9,8 +9,8 @@ from .llm_handler import LLMHandler
 import pandas as pd
 
 #TODO: decide a database. for now we will use padas dataframe
-#TODO: implement product recommendation
 #TODO: implement embedding search & rank
+#TODO: implement product recommendation based alread bought products
 
 
 class ProductHandler:

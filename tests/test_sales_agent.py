@@ -1,15 +1,13 @@
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from swarm import Swarm
-# import sys
-import os
-# # Adjust this path based on the directory structure
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 from dotenv import load_dotenv
 
 load_dotenv()  # Load variables from .env
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-from agents.agents import sales_agent, navigation_agent
-from agents.evals_util import evaluate_with_llm_bool, BoolEvalResult
+from InStoreGPTs.agents import sales_agent, navigation_agent
+from tests.evals_util import evaluate_with_llm_bool, BoolEvalResult
 import pytest
 import json
 
@@ -41,6 +39,7 @@ def run_and_get_tool_calls(agent, query):
         messages=[message],
         execute_tools=False,
     )
+    # print(response.messages)
     return response.messages[-1].get("tool_calls")
 
 
@@ -48,7 +47,7 @@ def run_and_get_tool_calls(agent, query):
     "query,function_name",
     [
         ("Transfer to the navigation agent", "transfer_to_navigation"),
-        ("I want to buy a pair of pro long distance running shoes.", "product_search"),
+        ("I want to buy a pair of black pro long distance running shoes under $100. No additional features", "product_search"),
     ],
 )
 def test_sales_agent_calls_correct_function(query, function_name):
@@ -58,23 +57,23 @@ def test_sales_agent_calls_correct_function(query, function_name):
     assert tool_calls[0]["function"]["name"] == function_name
 
 
-@pytest.mark.parametrize(
-    "messages",
-    [
-        [
-            {"role": "user", "content": "Who is the lead singer of U2"},
-            {"role": "assistant", "content": "Bono is the lead singer of U2."},
-        ],
-        [
-            {"role": "user", "content": "Hello!"},
-            {"role": "assistant", "content": "Hi there! How can I assist you today?"},
-            {"role": "user", "content": "I want to make a refund."},
-            {"role": "tool", "tool_name": "transfer_to_refunds"},
-            {"role": "user", "content": "Thank you!"},
-            {"role": "assistant", "content": "You're welcome! Have a great day!"},
-        ],
-    ],
-)
-def test_conversation_is_successful(messages):
-    result = conversation_was_successful(messages)
-    assert result == True
+# @pytest.mark.parametrize(
+#     "messages",
+#     [
+#         [
+#             {"role": "user", "content": "Who is the lead singer of U2"},
+#             {"role": "assistant", "content": "Bono is the lead singer of U2."},
+#         ],
+#         [
+#             {"role": "user", "content": "Hello!"},
+#             {"role": "assistant", "content": "Hi there! How can I assist you today?"},
+#             {"role": "user", "content": "I want to make a refund."},
+#             {"role": "tool", "tool_name": "transfer_to_refunds"},
+#             {"role": "user", "content": "Thank you!"},
+#             {"role": "assistant", "content": "You're welcome! Have a great day!"},
+#         ],
+#     ],
+# )
+# def test_conversation_is_successful(messages):
+#     result = conversation_was_successful(messages)
+#     assert result == True

@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from InStoreGPTs.services.product_handler import ProductHandler  # Replace with your actual module name
+from InStoreGPTs.services.product_handler import ProductHandler 
 
 # Sample DataFrame fixture using the adidas dataset
 @pytest.fixture

@@ -15,30 +15,35 @@ import pandas as pd
 
 class ProductHandler:
     """Handles the product recommendation based on the user's demand."""
+    
+    _df = None
+    def __init__(self, csv_file: Path):
+        self._df = pd.read_csv(csv_file)
 
     # Function to process JSON query and filter the DataFrame
-    @staticmethod
-    def evaluate_condition(condition, row_text):
+    def evaluate_condition(self, condition, row_text):
         if isinstance(condition, str):
             return condition in row_text
         elif isinstance(condition, dict):
             for key, value in condition.items():
                 if key == "AND":
-                    return all(ProductHandler.evaluate_condition(sub, row_text) for sub in value)
+                    return all(self.evaluate_condition(sub, row_text) for sub in value)
                 elif key == "OR":
-                    return any(ProductHandler.evaluate_condition(sub, row_text) for sub in value)
+                    return any(self.evaluate_condition(sub, row_text) for sub in value)
                 elif key == "NOT":
-                    return not any(ProductHandler.evaluate_condition(sub, row_text) for sub in value)
+                    return not any(self.evaluate_condition(sub, row_text) for sub in value)
         return False
 
-    @staticmethod
-    def keyword_search_with_json(query_json, df, search_columns):
-        results = []
-        for _, row in df.iterrows():
+    def keyword_search_with_json(self, query_json, df, search_columns):
+        # Get a list of row indices that match the query
+        matching_indices = []
+        for idx, row in df.iterrows():
             row_text = " ".join(str(row[col]).lower() for col in search_columns)
-            if ProductHandler.evaluate_condition(query_json['query'], row_text):
-                results.append(row)
-        return pd.DataFrame(results)
+            if self.evaluate_condition(query_json['query'], row_text):
+                matching_indices.append(idx)
+        
+        # Return a DataFrame containing all columns from the original DataFrame for the matching rows
+        return df.loc[matching_indices]
     
     def embedding_search(self, query, df, search_columns):
         pass
@@ -47,8 +52,7 @@ class ProductHandler:
         pass
 
     # Function to filter products by price range
-    @staticmethod
-    def filter_by_price_range(df, min_price=None, max_price=None):
+    def filter_by_price_range(self, df, min_price=None, max_price=None):
         if min_price is not None:
             df = df[df['PRICE'] >= min_price]
         if max_price is not None:
@@ -56,8 +60,7 @@ class ProductHandler:
         return df
 
     # Function to filter products by discount availability
-    @staticmethod
-    def filter_by_discount(df, has_discount=True):
+    def filter_by_discount(self, df, has_discount=True):
         if has_discount:
             df = df[df['DISCOUNT'] > 0]
         else:
@@ -65,10 +68,10 @@ class ProductHandler:
         return df
 
     # Main product search function
-    @staticmethod
-    def product_search(query_json, df, search_columns):
+    def product_search(self, query_json, search_columns):
         # Step 1: Apply price filters if provided
-        filtered_df = df.copy()  # Ensure filtered_df starts as a copy of df
+        filtered_df = self._df.copy()  # Ensure filtered_df starts as a copy of df
+        query_json = json.loads(query_json)
         if 'filters' in query_json:
             filters = query_json['filters']
             min_price = filters.get('min_price')
@@ -76,12 +79,12 @@ class ProductHandler:
             has_discount = filters.get('has_discount')
             
             if min_price is not None or max_price is not None:
-                filtered_df = ProductHandler.filter_by_price_range(filtered_df, min_price, max_price)
+                filtered_df = self.filter_by_price_range(filtered_df, min_price, max_price)
             
             if has_discount is not None:
-                filtered_df = ProductHandler.filter_by_discount(filtered_df, has_discount)
+                filtered_df = self.filter_by_discount(filtered_df, has_discount)
 
         # Step 2: Perform keyword-based search
-        filtered_df = ProductHandler.keyword_search_with_json(query_json, filtered_df, search_columns)
+        filtered_df = self.keyword_search_with_json(query_json, filtered_df, search_columns)
         
         return filtered_df

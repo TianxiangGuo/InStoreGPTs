@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from swarm.repl.repl import run_demo_loop
-from agents import sales_agent, navigation_agent
+from InStoreGPTs.agents import sales_agent, navigation_agent
 
 from dotenv import load_dotenv
 

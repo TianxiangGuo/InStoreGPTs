@@ -9,7 +9,7 @@ from openai import OpenAI
 
 
 # Local imports
-from .util import function_to_json, debug_print, merge_chunk
+from .util import function_to_json, debug_print, merge_chunk, TokenTracker
 from .types import (
     Agent,
     AgentFunction,
@@ -28,6 +28,11 @@ class Swarm:
         if not client:
             client = OpenAI()
         self.client = client
+        self.token_tracker = TokenTracker()
+    
+    def __del__(self):
+        # This will run when the object is garbage-collected
+        self.token_tracker.print_summary()
 
     def get_chat_completion(
         self,
@@ -67,6 +72,8 @@ class Swarm:
         
         if tools:
             create_params["parallel_tool_calls"] = agent.parallel_tool_calls
+        if stream:
+            create_params["stream_options"] = {"include_usage": True},
 
         return self.client.chat.completions.create(**create_params)
 
@@ -181,6 +188,11 @@ class Swarm:
 
             yield {"delim": "start"}
             for chunk in completion:
+                if 'usage' in chunk:
+                    # This is the final chunk with usage statistics
+                    usage = chunk['usage']
+                    self.token_tracker.update_tokens(usage['prompt_tokens'], usage['response_tokens'])
+                    continue
                 delta = json.loads(chunk.choices[0].delta.json())
                 if delta["role"] == "assistant":
                     delta["sender"] = active_agent.name
@@ -267,6 +279,7 @@ class Swarm:
                 stream=stream,
                 debug=debug,
             )
+            self.token_tracker.update_tokens(completion.usage.prompt_tokens, completion.usage.completion_tokens)
             message = completion.choices[0].message
             debug_print(debug, "Received completion:", message)
             message.sender = active_agent.name

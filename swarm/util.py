@@ -85,3 +85,36 @@ def function_to_json(func) -> dict:
             },
         },
     }
+
+class TokenTracker:
+    def __init__(self, cost_per_1m_input_tokens=2e-5, cost_per_1m_completion_tokens=2e-5):
+        self.total_input_tokens = 0
+        self.total_completion_tokens = 0
+        self.total_tokens = 0
+        self.estimated_cost = 0.0
+        self.cost_per_1m_input_tokens = cost_per_1m_input_tokens
+        self.cost_per_1m_completion_tokens = cost_per_1m_completion_tokens
+
+    def update_tokens(self, input_tokens, completion_tokens):
+        self.total_input_tokens += input_tokens
+        self.total_completion_tokens += completion_tokens
+        self.total_tokens += (input_tokens + completion_tokens)
+        self._update_cost()
+
+    def _update_cost(self):
+        # Calculate estimated cost based on total tokens used
+        self.estimated_cost = (self.total_input_tokens / 1e6) * self.cost_per_1m_input_tokens + (self.total_completion_tokens / 1e6) * self.cost_per_1m_completion_tokens
+
+    def get_summary(self):
+        return {
+            "total_input_tokens": self.total_input_tokens,
+            "total_completion_tokens": self.total_completion_tokens,
+            "total_tokens": self.total_tokens,
+            "estimated_cost": self.estimated_cost
+        }
+
+    def print_summary(self):
+        summary = self.get_summary()
+        print("Token Usage Summary:")
+        for key, value in summary.items():
+            print(f"{key}: {value}")

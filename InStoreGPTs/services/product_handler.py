@@ -33,7 +33,7 @@ class ProductHandler:
                 'function': {
                     'name': 'transfer_to_navigation',
                     'description': 'Transfer the user to the navigation agent.',
-                    'parameters': {'type': 'object', 'properties': {}, 'required': []}
+                    'parameters': {'type': 'object', 'properties': {'summary': {'type': 'string', 'description':'summary of the products and locations the user wants to navigate to'}}, 'required': ['summary']}
                 }
             }
         ]
@@ -51,22 +51,22 @@ class ProductHandler:
 
 **Clarification**: "Do you have any color or price preferences?"
 
-**User Reply**: "Items under $40."
+**User Reply**: "Items under $40. better with a discount"
 
 **JSON for Function Call**:
 {
   "query": {
     "OR": [
-      {
+        {
         "AND": ["comfortable", "gym", "shorts"]
-      },
-      {
+        },
+        {
         "AND": ["workout", "pants"]
-      }
-    ]
+        }
+    ],
+    "NOT": ["cotton"],
   },
-  "NOT": ["cotton"],
-  "filters": { "max_price": 40 }
+  "filters": { "max_price": 40, "has_discount": true }
 }
 
 **Function Call Instruction**:
@@ -83,9 +83,12 @@ Call the `product_search` function useing the generated JSON as parameter.
   }
 ]
 
-
 **Response**:
 "We have Adidas Aeroready Gym Shorts for $35 with a $5 discount in Aisle 3, Shelf 1. They're lightweight with moisture-wicking fabric, perfect for gym sessions."
+
+**User Reply**: "Where is it?"
+
+**Function Call Instruction**: call the `transfer_to_navigation` function with summary "The customer wants to navigate to Aisle 3 Shelf 1 to find Adidas Aeroready Gym Shorts. The current location of the customer is unknown".
 
 ### Guidelines:
 - Ensure JSON accurately represents user requests with logical operators, including `AND`, `OR`, and `NOT`.
@@ -96,8 +99,9 @@ Call the `product_search` function useing the generated JSON as parameter.
 
     # Function to process JSON query and filter the DataFrame
     def evaluate_condition(self, condition, row_text):
+        # If condition is a string, convert to lowercase for case-insensitive matching
         if isinstance(condition, str):
-            return condition in row_text
+            return condition.lower() in row_text
         elif isinstance(condition, dict):
             for key, value in condition.items():
                 if key == "AND":
@@ -142,23 +146,31 @@ Call the `product_search` function useing the generated JSON as parameter.
         return df
 
     # Main product search function
-    def product_search(self, query_json, search_columns):
+    def product_search(self, query_json, search_columns, max_results=5):
         # Step 1: Apply price filters if provided
         filtered_df = self._df.copy()  # Ensure filtered_df starts as a copy of df
-        query_json = json.loads(query_json)
-        if 'filters' in query_json:
-            filters = query_json['filters']
-            min_price = filters.get('min_price')
-            max_price = filters.get('max_price')
-            has_discount = filters.get('has_discount')
-            
-            if min_price is not None or max_price is not None:
-                filtered_df = self.filter_by_price_range(filtered_df, min_price, max_price)
-            
-            if has_discount is not None:
-                filtered_df = self.filter_by_discount(filtered_df, has_discount)
+        try:
+            query_json = json.loads(query_json)
+            if 'filters' in query_json:
+                filters = query_json['filters']
+                min_price = filters.get('min_price')
+                max_price = filters.get('max_price')
+                has_discount = filters.get('has_discount')
+                
+                if min_price is not None or max_price is not None:
+                    filtered_df = self.filter_by_price_range(filtered_df, min_price, max_price)
+                
+                if has_discount is not None:
+                    filtered_df = self.filter_by_discount(filtered_df, has_discount)
 
-        # Step 2: Perform keyword-based search
-        filtered_df = self.keyword_search_with_json(query_json, filtered_df, search_columns)
+            # Step 2: Perform keyword-based search
+            filtered_df = self.keyword_search_with_json(query_json, filtered_df, search_columns)
         
-        return filtered_df
+        except Exception as e:
+            raise ValueError(f"Invalid JSON format: {e}")
+
+        pd.set_option('display.max_columns', None)  # Show all columns
+        pd.set_option('display.max_colwidth', None) # Show full content of each column
+        print(filtered_df.head(max_results))
+        return filtered_df.head(max_results)
+       

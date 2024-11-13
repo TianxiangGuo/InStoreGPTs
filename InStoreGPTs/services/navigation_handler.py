@@ -1,4 +1,6 @@
-#TODO: smarter navigation handler
+#TODO: smarter navigation handler. 
+# direction 1 fuction calling: 0. prepare data format with nodes & edges 1. call function with input locations. 2. function returns a path. 3. prompt to explain the path concisely.
+# direction 2 prompt engineering: try store map description.
 
 class NavigationHandler:
     def __init__(self, store_map):

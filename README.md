@@ -106,6 +106,8 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 - [ ] Support open-sourced models like llama, qwen...
 ### 7. Multi-platform Supports
 - [ ] Adroid / IOS / Harmony ...
+### 8. Production focused features
+- [ ] Refer to multi-agent frameworks like LangGraph, CrewAI, AutoGen, supporting better memory system, token management, error handling.
 
 ## Getting Started
 

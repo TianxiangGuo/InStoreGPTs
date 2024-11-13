@@ -9,7 +9,7 @@ from InStoreGPTs.services.product_handler import ProductHandler
 def product_handler():
     # Load the full dataset as a fixture for testing
     # Load the uploaded CSV file
-    file_path = 'example_data/adidas.csv'
+    file_path = 'example_data/adidas/adidas_products.csv'
     ph = ProductHandler(file_path)
     return ph
 
@@ -29,6 +29,42 @@ def test_keyword_search_shorts(product_handler):
         "shorts" in (row['PRODUCT_NAME'].lower() + " " + row['DESCRIPTION'].lower())
         for _, row in result.iterrows()
     ), "All results should mention 'shorts' in either PRODUCT_NAME or DESCRIPTION."
+
+# Test: Price filter with a keyword ("climbing") and max price $100
+def test_price_no_basketball_shoes(product_handler):
+    query_json = """{
+        "query": {
+            "OR": [
+                {
+                    "AND": ["running", "Shoes"]
+                },
+                {
+                    "AND": ["walking", "shoes"]
+                }
+            ],
+            "NOT": ["basketball"]
+        },
+        "filters": {
+            "max_price": 100
+        }
+    }"""
+    result = product_handler.product_search(query_json, search_columns=["DESCRIPTION", "PRODUCT_NAME"], max_results=100)
+    # Assert that the result is not empty
+    assert not result.empty, "Expected results for running or walking shoes under $100, excluding basketball shoes, but none were found."
+    
+    # Check that each result matches the conditions specified in the query
+    for _, row in result.iterrows():
+        product_text = f"{row['PRODUCT_NAME']} {row['DESCRIPTION']}".lower()
+        
+        # Assert that each product contains "running shoes" or "walking shoes"
+        assert ("running" in product_text or "walking" in product_text) and "shoes" in product_text, \
+            "Each result should be either running shoes or walking shoes."
+        
+        # Assert that no product contains the word "basketball"
+        assert "basketball" not in product_text, "No result should contain 'basketball'."
+        
+        # Assert that the price is below or equal to $100
+        assert row['PRICE'] <= 100, "Each product should be priced at $100 or less."
 
 # Test: Price filter with a keyword ("climbing") and max price $100
 def test_price_filter_climbing(product_handler):

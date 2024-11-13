@@ -87,23 +87,26 @@ def function_to_json(func) -> dict:
     }
 
 class TokenTracker:
-    def __init__(self, cost_per_1m_input_tokens=2e-5, cost_per_1m_completion_tokens=2e-5):
+    def __init__(self, cost_per_1m_input_tokens=0.15, cost_per_1m_completion_tokens=0.6):
         self.total_input_tokens = 0
         self.total_completion_tokens = 0
         self.total_tokens = 0
         self.estimated_cost = 0.0
-        self.cost_per_1m_input_tokens = cost_per_1m_input_tokens
-        self.cost_per_1m_completion_tokens = cost_per_1m_completion_tokens
+        self.model_prices = {'gpt-4o-mini': {'cost_per_1m_input_tokens': 0.15, 'cost_per_1m_completion_tokens': 0.6},
+                             'gpt-4o': {'cost_per_1m_input_tokens': 2.5, 'cost_per_1m_completion_tokens': 10}
+                            }
 
-    def update_tokens(self, input_tokens, completion_tokens):
+    def update_tokens(self, model, input_tokens, completion_tokens):
         self.total_input_tokens += input_tokens
         self.total_completion_tokens += completion_tokens
         self.total_tokens += (input_tokens + completion_tokens)
-        self._update_cost()
+        self._update_cost(model)
 
-    def _update_cost(self):
+    def _update_cost(self, model):
         # Calculate estimated cost based on total tokens used
-        self.estimated_cost = (self.total_input_tokens / 1e6) * self.cost_per_1m_input_tokens + (self.total_completion_tokens / 1e6) * self.cost_per_1m_completion_tokens
+        cost_per_1m_input_tokens = self.model_prices[model]['cost_per_1m_input_tokens']
+        cost_per_1m_completion_tokens = self.model_prices[model]['cost_per_1m_completion_tokens']
+        self.estimated_cost = (self.total_input_tokens / 1e6) * cost_per_1m_input_tokens + (self.total_completion_tokens / 1e6) * cost_per_1m_completion_tokens
 
     def get_summary(self):
         return {

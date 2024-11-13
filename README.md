@@ -75,10 +75,18 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 #### 1.4 Database
 - [x] Currently reads CSV files into a pandas DataFrame. 
 
+#### 1.5 Safety
+- [ ] Guardrails
+
 ### 2. Frontend
 - [ ] Implement either a mobile app or web app, whichever is easier.
 - [ ] UI for customers: text interaction & image input & audio interaction
 - [ ] UI for store owners: Upload products data & store map image & set agent config
+
+### 3. CICD
+- [x] Cost Estimation
+- [ ] Unit Tests
+- [ ] Workflow
 
 ## Future To-Do List
 ### 1. Smarter Product Search

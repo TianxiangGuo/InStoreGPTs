@@ -1,0 +1,31 @@
+{
+    "store_layout": {
+        "entrance": {
+            "location_type": "Entrance",
+            "number": 1,
+            "coordinates": {"x": 1, "y": 0}
+        },
+        "checkout": {
+            "location_type": "Checkout",
+            "number": 1,
+            "coordinates": {"x": 11, "y": 0}
+        },
+        "aisles": [
+            {"location_type": "Aisle", "number": 1, "coordinates": {"x": 2, "y": 8}, "row": "left"},
+            {"location_type": "Aisle", "number": 2, "coordinates": {"x": 4, "y": 8}, "row": "left"},
+            {"location_type": "Aisle", "number": 3, "coordinates": {"x": 6, "y": 8}, "row": "left"},
+            {"location_type": "Aisle", "number": 4, "coordinates": {"x": 8, "y": 8}, "row": "left"},
+            {"location_type": "Aisle", "number": 5, "coordinates": {"x": 10, "y": 8}, "row": "left"},
+            {"location_type": "Aisle", "number": 6, "coordinates": {"x": 2, "y": 4}, "row": "right"},
+            {"location_type": "Aisle", "number": 7, "coordinates": {"x": 4, "y": 4}, "row": "right"},
+            {"location_type": "Aisle", "number": 8, "coordinates": {"x": 6, "y": 4}, "row": "right"},
+            {"location_type": "Aisle", "number": 9, "coordinates": {"x": 8, "y": 4}, "row": "right"},
+            {"location_type": "Aisle", "number": 10, "coordinates": {"x": 10, "y": 4}, "row": "right"}
+        ],
+        "walls": [
+            {"location_type": "Wall", "number": 1, "coordinates": {"x": 6, "y": 10}, "orientation": "horizontal"},
+            {"location_type": "Wall", "number": 2, "coordinates": {"x": 0, "y": 6}, "orientation": "vertical"},
+            {"location_type": "Wall", "number": 3, "coordinates": {"x": 12, "y": 6}, "orientation": "vertical"}
+        ]
+    }
+}

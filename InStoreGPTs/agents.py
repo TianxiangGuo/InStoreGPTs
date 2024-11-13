@@ -19,11 +19,20 @@ nh = NavigationHandler(store_map)
 #     return nh.in_store_navigation(query_json)
 
 
-def transfer_to_sales():
-    return sales_agent
+def transfer_to_sales(summary):
+    return Agent(
+                name="Sales Agent",
+                instructions=ph.system_prompt,
+                functions=[product_search,transfer_to_navigation],
+                functions_description = ph._tools,
+            )
 
-def transfer_to_navigation():
-    return navigation_agent
+def transfer_to_navigation(summary):
+    return Agent(
+                name="Navigation Agent",
+                instructions=nh.system_prompt,
+                functions=[transfer_to_sales],
+            )
 
 sales_agent = Agent(
     name="Sales Agent",

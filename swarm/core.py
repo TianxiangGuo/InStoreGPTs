@@ -191,7 +191,7 @@ class Swarm:
                 if 'usage' in chunk:
                     # This is the final chunk with usage statistics
                     usage = chunk['usage']
-                    self.token_tracker.update_tokens(usage['prompt_tokens'], usage['response_tokens'])
+                    self.token_tracker.update_tokens(model_override or agent.model, usage['prompt_tokens'], usage['response_tokens'])
                     continue
                 delta = json.loads(chunk.choices[0].delta.json())
                 if delta["role"] == "assistant":
@@ -279,7 +279,7 @@ class Swarm:
                 stream=stream,
                 debug=debug,
             )
-            self.token_tracker.update_tokens(completion.usage.prompt_tokens, completion.usage.completion_tokens)
+            self.token_tracker.update_tokens(model_override or agent.model, completion.usage.prompt_tokens, completion.usage.completion_tokens)
             message = completion.choices[0].message
             debug_print(debug, "Received completion:", message)
             message.sender = active_agent.name

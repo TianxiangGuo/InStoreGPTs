@@ -11,6 +11,9 @@ import pandas as pd
 #TODO: decide a database. for now we will use padas dataframe
 #TODO: implement embedding search & rank
 #TODO: implement product recommendation based alread bought products
+#TODO: handle invalid JSON format: add retry logic
+#TODO: add customized filter options. e.g. cpu specs for hardware store, color/size for clothing store
+#TODO: add links to the product pages for more details
 
 
 class ProductHandler:
@@ -84,7 +87,7 @@ Call the `product_search` function useing the generated JSON as parameter.
 ]
 
 **Response**:
-"We have Adidas Aeroready Gym Shorts for $35 with a $5 discount in Aisle 3, Shelf 1. They're lightweight with moisture-wicking fabric, perfect for gym sessions."
+"We have Adidas Aeroready Gym Shorts for $35 with a $5 discount. They're lightweight with moisture-wicking fabric, perfect for gym sessions."
 
 **User Reply**: "Where is it?"
 

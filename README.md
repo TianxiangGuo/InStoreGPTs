@@ -66,8 +66,8 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 - [ ] Add image search: use an LLM to caption the image, extract key information, then use the existing product search logic.
 
 #### 1.2 Navigation Agent
-- [ ] Mock image store map 
-- [ ] Use a multi-modal LLM that takes user text description for localization and the Mock image store map to guide useres.
+- [x] Mock image store map 
+- [x] Use a multi-modal LLM that takes user text description for localization and the Mock image store map to guide useres.
 
 #### 1.3 Transfer
 - [x] Agents handoff to each other.
@@ -79,19 +79,23 @@ The main objective of InStoreGPTs is to bridge the gap between physical and digi
 - [ ] Guardrails
 
 ### 2. Frontend
-- [ ] Implement either a mobile app or web app, whichever is easier.
-- [ ] UI for customers: text interaction & image input & audio interaction
+- [x] Implement either a mobile app or web app, whichever is easier. (update: web)
+- [ ] UI for customers: text interaction & image inpu
+   - [x] text
+   - [ ] image
 - [ ] UI for store owners: Upload products data & store map image & set agent config
 
 ### 3. CICD
 - [x] Cost Estimation
-- [ ] Unit Tests
+- [x] Unit Tests
 - [ ] Workflow
 
 ## Future To-Do List
 ### 1. Smarter Product Search
 - [ ] Embeddings search & ranking
 - [ ] Recommendation based on history
+- [ ] QA based on knowledge base
+- [ ] multimodal embedding. e.g. image & text
 ### 2. Enhanced Navigation
 - [ ] Creative ways for navigation
 ### 3. Scalable Database
@@ -153,5 +157,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-- **OpenAI** for their open-sourced `Swarm` framework.
-- **RetailGPT** for inspiring the direction and design of this project.
+- **OpenAI** for their open-sourced [`Swarm`](https://github.com/openai/swarm) framework.
+- [**RetailGPT**](https://github.com/unicamp-dl/retailGPT) for inspiring the direction and design of this project.
+- [**Flask-OpenAI-Chatbot**](https://github.com/batuhantoker/Flask-OpenAI-Chatbot) for simple frontend design. 
+

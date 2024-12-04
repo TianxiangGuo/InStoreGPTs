@@ -45,7 +45,7 @@ class ProductHandler:
 ### Workflow:
 1. **User Input**: Understand what products the user wants.
 2. **Clarification**: Ask questions if more details are needed. Don't ask if the request is clear.
-3. **Query Creation**: Convert the request into structured JSON using `AND`, `OR`, and `NOT` with clear operation precedence.
+3. **Query Creation**: Convert the request into ONE structured JSON with 1. key "query" using `AND`, `OR`, and `NOT` with clear operation precedence, and 2. key "fliters" for "max_price" and "has_discount".
 4. **Function Call**: Use the structured JSON to call `product_search` from `ProductHandler`.
 5. **Response**: Summarize the results clearly, highlighting product name, price, discount, location, and relevant features.
 
@@ -95,8 +95,9 @@ Call the `product_search` function useing the generated JSON as parameter.
 
 ### Guidelines:
 - Ensure JSON accurately represents user requests with logical operators, including `AND`, `OR`, and `NOT`.
+- Ignore color and sizes for now. Assume all size & color variants are available.
 - Call the `product_search` function with the generated JSON.
-- Do Not show function call process in the response.
+- Do Not show function call process and JSON in the response.
 - Keep responses concise and engaging.
 - Highlight features that match the user's needs.
 - Maintain a friendly and approachable tone."""
@@ -175,6 +176,6 @@ Call the `product_search` function useing the generated JSON as parameter.
 
         pd.set_option('display.max_columns', None)  # Show all columns
         pd.set_option('display.max_colwidth', None) # Show full content of each column
-        print(filtered_df.head(max_results))
+        # print(filtered_df.head(max_results))
         return filtered_df.head(max_results)
 

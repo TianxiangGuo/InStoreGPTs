@@ -23,6 +23,7 @@ from .types import (
 
 __CTX_VARS_NAME__ = "context_variables"
 
+#TODO: debug prints to logs
 
 class Swarm:
     def __init__(self, client=None):
@@ -57,7 +58,7 @@ class Swarm:
         # tools = [function_to_json(f) for f in agent.functions]
         tools = agent.functions_description
         # hide context_variables from model
-        print(tools)
+        # print(tools)
         for tool in tools:
             params = tool["function"]["parameters"]
             params["properties"].pop(__CTX_VARS_NAME__, None)

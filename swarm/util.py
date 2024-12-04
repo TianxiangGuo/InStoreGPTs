@@ -1,7 +1,6 @@
 import inspect
 from datetime import datetime
 
-#TODO: debug TokenTracker for non streaming
 
 def debug_print(debug: bool, *args: str) -> None:
     if not debug:

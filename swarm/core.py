@@ -6,6 +6,7 @@ from typing import List, Callable, Union
 
 # Package/library imports
 from openai import OpenAI
+import atexit
 
 
 # Local imports
@@ -29,8 +30,9 @@ class Swarm:
             client = OpenAI()
         self.client = client
         self.token_tracker = TokenTracker()
+        atexit.register(self.terminate)
     
-    def __del__(self):
+    def terminate(self):
         # This will run when the object is garbage-collected
         self.token_tracker.print_summary()
 
@@ -279,7 +281,10 @@ class Swarm:
                 stream=stream,
                 debug=debug,
             )
+            # print("updating tokens")
+            # print(completion.usage.prompt_tokens, completion.usage.completion_tokens)
             self.token_tracker.update_tokens(model_override or agent.model, completion.usage.prompt_tokens, completion.usage.completion_tokens)
+            # self.token_tracker.print_summary()
             message = completion.choices[0].message
             debug_print(debug, "Received completion:", message)
             message.sender = active_agent.name

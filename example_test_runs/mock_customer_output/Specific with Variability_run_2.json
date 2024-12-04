@@ -1,0 +1,45 @@
+{
+    "user_chat_history": [
+        {
+            "role": "system",
+            "content": "\n    You are a customer testing an adidas in-store assistant system.\n    Your goal is to evaluate its response in a multi-step interaction.\n\n    ### Query:\n    Show me Adidas hoodies in medium size, any color.\n\n    Continue the conversation naturally based on the system's responses.\n    If you acheive the goal, you can say \"End Conversation\" to end.\n    Start the conversation by greeting asking for help.\n    "
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I'm looking for some help. Can you show me Adidas hoodies in medium size, any color?"
+        },
+        {
+            "role": "user",
+            "content": "Could you let me know if you have a price range in mind or if you're looking for items with a discount?"
+        },
+        {
+            "role": "assistant",
+            "content": "I don't have a specific price range in mind, but if there are any discounts available, that would be great! Can you show me what you have in medium size?"
+        },
+        {
+            "role": "user",
+            "content": "I found a great option for you! \n\n**Product**: Essentials 3-Stripes Cropped Hoodie  \n**Price**: $36 (with a $9 discount)  \n**Location**: Aisle 6, Shelf 8  \n**Description**: This cropped pullover hoodie offers a relaxed fit without the bulk. It features the iconic 3-Stripes down both arms and the adidas Badge of Sport, making it perfect for streetwear. Plus, it's made with recycled content to help reduce plastic waste!\n\nWould you like to know where to find it?"
+        },
+        {
+            "role": "assistant",
+            "content": "That sounds like a great option! Yes, please let me know where I can find it."
+        },
+        {
+            "role": "user",
+            "content": "Could you tell me where you are currently in the store so I can guide you to Aisle 6, Shelf 8?"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm near the entrance of the store. How do I get to Aisle 6 from here?"
+        },
+        {
+            "role": "user",
+            "content": "Just head straight down the main aisle from the entrance. Once you reach the end, take a left. Aisle 6 will be on your right. The hoodie will be on Shelf 8. Happy shopping!"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you for the directions! I appreciate your help. I'll go check out the hoodie now. End Conversation."
+        }
+    ],
+    "rounds": 5
+}

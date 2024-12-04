@@ -1,0 +1,69 @@
+[
+{
+    "scenario": "Highly Specific Need",
+    "test_run": 2,
+    "chat_history_file": "tests/mock_customer_output\\Highly Specific Need_run_2.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe interaction was seamless and efficient. The assistant provided a clear alternative when the original product was unavailable and offered detailed navigation guidance that was easy to follow. No improvements are necessary; the system worked well in providing both product information and in-store directions."
+},
+{
+    "scenario": "Highly Specific Need",
+    "test_run": 3,
+    "chat_history_file": "tests/mock_customer_output\\Highly Specific Need_run_3.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 4\n- **Navigation:** 5\n\n### Overall Satisfaction:\n4\n\n### Suggestions for Improvement:\nThe overall interaction was clear and the navigation guidance was effective and easy to follow. However, the system repeated exchanges of gratitude and pleasantries multiple times, which could be streamlined to make the conversation more efficient. Reducing repetition would help maintain the focus on the shopping task and improve interaction efficiency."
+},
+{
+    "scenario": "Specific with Variability",
+    "test_run": 1,
+    "chat_history_file": "tests/mock_customer_output\\Specific with Variability_run_1.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe response was clear, efficient, and accurate. There are no improvements needed as the navigation guidance provided was straightforward and easy to follow. The in-store assistant system effectively helped me locate the Adidas hoodie and addressed any relevant details, making the shopping experience smooth and pleasant."
+},
+{
+    "scenario": "Specific with Variability",
+    "test_run": 2,
+    "chat_history_file": "tests/mock_customer_output\\Specific with Variability_run_2.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe response was clear, efficient, and provided easy-to-follow navigation instructions. There is no need for improvement as the interaction met all expectations and was very helpful."
+},
+{
+    "scenario": "Specific with Variability",
+    "test_run": 3,
+    "chat_history_file": "tests/mock_customer_output\\Specific with Variability_run_3.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe assistant handled the query and provided navigation instructions thoroughly and clearly. The directions to find the Formotion Sculpt Tights were easy to follow, and the information provided about location and size options was helpful. No improvements are needed in this interaction, as it was efficient and informative."
+},
+{
+    "scenario": "Functional Requirement",
+    "test_run": 1,
+    "chat_history_file": "tests/mock_customer_output\\Functional Requirement_run_1.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe interaction was clear, efficient, and the navigation guidance provided was easy to understand and follow. No improvements needed as everything was communicated effectively and satisfactorily."
+},
+{
+    "scenario": "Functional Requirement",
+    "test_run": 3,
+    "chat_history_file": "tests/mock_customer_output\\Functional Requirement_run_3.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe response was clear, efficient, and provided accurate navigation guidance from the entrance to Aisle 5. No improvements are necessary as the interaction was smooth and helpful."
+},
+{
+    "scenario": "General Product Search",
+    "test_run": 1,
+    "chat_history_file": "tests/mock_customer_output\\General Product Search_run_1.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 4\n- **Effort:** 3\n- **Navigation:** 3\n\n### Overall Satisfaction:\n3\n\n### Suggestions for Improvement:\nThe interaction was generally clear, but it was somewhat inefficient due to the repeated feedback about the unavailability of products. The assistant could have provided alternative suggestions or ways to find the information, such as offering to check different categories or share information about potential restocks. Additionally, providing specific directions or contact points for checking promotions, like a store location or a customer service link, could enhance navigation and customer support."
+},
+{
+    "scenario": "General Product Search",
+    "test_run": 2,
+    "chat_history_file": "tests/mock_customer_output\\General Product Search_run_2.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe response was clear, efficient, and the navigation guidance was easy to understand and follow. No improvements are needed as the interaction was smooth and satisfactory."
+},
+{
+    "scenario": "Category Navigation",
+    "test_run": 2,
+    "chat_history_file": "tests/mock_customer_output\\Category Navigation_run_2.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe response was clear, accurate, and easy to understand. The assistant efficiently provided exact directions with relevant details and offered further help if needed. There are no improvements necessary; the response was excellent."
+},
+{
+    "scenario": "Category Navigation",
+    "test_run": 3,
+    "chat_history_file": "tests/mock_customer_output\\Category Navigation_run_3.json",
+    "evaluation_result": "### Customer Feedback:\n- **Clarity:** 5\n- **Effort:** 5\n- **Navigation:** 5\n\n### Overall Satisfaction:\n5\n\n### Suggestions for Improvement:\nThe guidance was clear and easy to follow, directing me efficiently from the store entrance to the running shoes section. The interaction was smooth, and the assistant was very friendly and helpful throughout. No improvements are needed; the service was excellent."
+}
+
+]

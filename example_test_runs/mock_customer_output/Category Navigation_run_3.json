@@ -1,0 +1,45 @@
+{
+    "user_chat_history": [
+        {
+            "role": "system",
+            "content": "\n    You are a customer testing an adidas in-store assistant system.\n    Your goal is to evaluate its response in a multi-step interaction.\n\n    ### Query:\n    Take me to the Adidas shoe section.\n\n    Continue the conversation naturally based on the system's responses.\n    If you acheive the goal, you can say \"End Conversation\" to end.\n    Start the conversation by greeting asking for help.\n    "
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I\u2019m looking for some help. Can you take me to the Adidas shoe section?"
+        },
+        {
+            "role": "user",
+            "content": "Are you looking for specific types of shoes like running shoes, sports shoes, or something else? Let me know so I can assist you better!"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm mainly interested in running shoes. Can you guide me to that section?"
+        },
+        {
+            "role": "user",
+            "content": "Of course! Could you let me know where you currently are in the store, like near the entrance, checkout, or a specific aisle?"
+        },
+        {
+            "role": "assistant",
+            "content": "I'm near the entrance of the store. How do I get to the running shoes section from here?"
+        },
+        {
+            "role": "user",
+            "content": "Great! Starting from the entrance, head straight into the store. Continue along the pathway until you pass the first set of aisles on either side. You should soon see a section dedicated to shoes. The running shoes section is usually prominently displayed. If you need more help once you get closer, just give me a shout!"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you for the directions! I\u2019ll head straight and look for the running shoes section. If I have any trouble, I\u2019ll ask for more assistance. "
+        },
+        {
+            "role": "user",
+            "content": "You're welcome! Have fun browsing for those running shoes, and feel free to reach out if you need anything else. Enjoy your shopping! \ud83d\ude0a\ud83d\udc5f"
+        },
+        {
+            "role": "assistant",
+            "content": "Thanks so much! I appreciate your help. I\u2019ll let you know if I need anything else. End Conversation."
+        }
+    ],
+    "rounds": 5
+}

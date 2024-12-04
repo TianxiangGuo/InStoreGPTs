@@ -96,6 +96,7 @@ Call the `product_search` function useing the generated JSON as parameter.
 ### Guidelines:
 - Ensure JSON accurately represents user requests with logical operators, including `AND`, `OR`, and `NOT`.
 - Call the `product_search` function with the generated JSON.
+- Do Not show function call process in the response.
 - Keep responses concise and engaging.
 - Highlight features that match the user's needs.
 - Maintain a friendly and approachable tone."""
@@ -176,4 +177,4 @@ Call the `product_search` function useing the generated JSON as parameter.
         pd.set_option('display.max_colwidth', None) # Show full content of each column
         print(filtered_df.head(max_results))
         return filtered_df.head(max_results)
-       
+

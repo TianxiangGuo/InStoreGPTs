@@ -1,28 +1,42 @@
 **Store Layout Description:**
 
 - **Store Entrance**:
-  - The store entrance is located at coordinates (1, 0). Customers enter the store from this point.
+  - The store entrance is located in the bottom-left corner.
 
 - **Checkout Area**:
-  - The checkout area is located at coordinates (11, 0), on the right side of the store.
+  - The checkout area is located in the bottom-right corner of the store.
 
-- **Aisles**:
-  - The store contains 10 aisles arranged in two rows to create a U-shaped customer walk path:
-    - **Left Row** (Aisles 1–5):
-      - **Aisle 1**: Located at coordinates (2, 8), in the left row near the entrance.
-      - **Aisle 2**: Located at coordinates (4, 8), adjacent to Aisle 1.
-      - **Aisle 3**: Located at coordinates (6, 8), centrally positioned in the left row.
-      - **Aisle 4**: Located at coordinates (8, 8), adjacent to Aisle 3.
-      - **Aisle 5**: Located at coordinates (10, 8), at the end of the left row, close to the store's perimeter.
-    - **Right Row** (Aisles 6–10):
-      - **Aisle 6**: Located at coordinates (2, 4), opposite Aisle 1.
-      - **Aisle 7**: Located at coordinates (4, 4), adjacent to Aisle 6.
-      - **Aisle 8**: Located at coordinates (6, 4), centrally positioned in the right row, opposite Aisle 3.
-      - **Aisle 9**: Located at coordinates (8, 4), adjacent to Aisle 8.
-      - **Aisle 10**: Located at coordinates (10, 4), at the end of the right row, opposite Aisle 5 and close to the store's perimeter.
+- **Aisles and Pathways**:
+  - The store contains 10 aisles arranged in two rows with pathways creating a comprehensive customer walk path:
+    - **Top Row** (Aisles 1–5):
+      - **Aisle 1**: Positioned near the left side of the store, connected to the top horizontal pathway.
+      - **Aisle 2**: Adjacent to Aisle 1, further along the top horizontal pathway.
+      - **Aisle 3**: Centrally positioned in the top row, connecting to the main pathways.
+      - **Aisle 4**: Adjacent to Aisle 3, closer to the right side.
+      - **Aisle 5**: At the far-right end of the top row, near Wall 3.
+    - **Bottom Row** (Aisles 6–10):
+      - **Aisle 6**: Positioned near the left side, directly opposite Aisle 1.
+      - **Aisle 7**: Adjacent to Aisle 6, further along the bottom horizontal pathway.
+      - **Aisle 8**: Centrally positioned in the bottom row, opposite Aisle 3.
+      - **Aisle 9**: Adjacent to Aisle 8, closer to the right side.
+      - **Aisle 10**: At the far-right end of the bottom row, directly opposite Aisle 5.
 
-- **Walls**:
-  - The store has walls surrounding it on three sides, forming a boundary:
-    - **Top Wall** (Wall 1): Extends horizontally across the top of the store, from (3, 10) to (9, 10).
-    - **Left Wall** (Wall 2): Extends vertically along the left side of the store from (0, 3) to (0, 7).
-    - **Right Wall** (Wall 3): Extends vertically along the right side of the store from (12, 3) to (12, 7).
+- **Walls and Boundaries**:
+  - The store has walls enclosing it on three sides:
+    - **Top Wall (Wall 1)**: Runs horizontally across the top edge of the store, adjacent to the top pathway and the top row of aisles.
+    - **Left Wall (Wall 2)**: Extends vertically along the left side, enclosing Aisles 1 and 6, with a vertical pathway between the wall and the aisles.
+    - **Right Wall (Wall 3)**: Extends vertically along the right side, enclosing Aisles 5 and 10, with a vertical pathway between the wall and the aisles.
+
+- **Pathways**:
+  - **Horizontal Pathways**:
+    - A **top horizontal pathway** runs along the top of the store, connecting the top row of aisles.
+    - A **middle horizontal pathway** runs between the top and bottom rows of aisles, allowing access to both rows.
+    - A **bottom horizontal pathway** runs along the bottom of the store, connecting the bottom row of aisles.
+  - **Vertical Pathways**:
+    - Two vertical pathways run between the left wall and the leftmost aisles (Aisles 1 and 6).
+    - Four vertical pathways are located between each pair of adjacent aisles:
+      - Between Aisles 1 and 2 (and Aisles 6 and 7).
+      - Between Aisles 2 and 3 (and Aisles 7 and 8).
+      - Between Aisles 3 and 4 (and Aisles 8 and 9).
+      - Between Aisles 4 and 5 (and Aisles 9 and 10).
+    - Two vertical pathways run between the rightmost aisles (Aisles 5 and 10) and the right wall.

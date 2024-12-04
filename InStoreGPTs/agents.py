@@ -13,7 +13,10 @@ def product_search(query_json):
     return ph.product_search(query_json, ["PRODUCT_NAME", "DESCRIPTION"])
 
 
-store_map = json.load(open('example_data/adidas/adidas_map.json'))
+# store_map = json.load(open('example_data/adidas/adidas_map.json'))
+with open('example_data/adidas/adidas_map.txt', 'r', encoding='utf-8') as file:
+    # Read the contents of the file into a string
+    store_map = file.read()
 nh = NavigationHandler(store_map)
 # def in_store_navigation(query_json):
 #     return nh.in_store_navigation(query_json)
@@ -22,6 +25,7 @@ nh = NavigationHandler(store_map)
 def transfer_to_sales(summary):
     return Agent(
                 name="Sales Agent",
+                model="gpt-4o",
                 instructions=ph.system_prompt,
                 functions=[product_search,transfer_to_navigation],
                 functions_description = ph._tools,
@@ -30,6 +34,7 @@ def transfer_to_sales(summary):
 def transfer_to_navigation(summary):
     return Agent(
                 name="Navigation Agent",
+                model="gpt-4o",
                 instructions=nh.system_prompt,
                 functions=[transfer_to_sales],
             )
